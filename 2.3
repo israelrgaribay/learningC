@@ -1,0 +1,25 @@
+/*
+Author: Israel Garibay
+Date:	January 1st, 2018
+Book:	Starting out with c++, 8th edition
+Problem 2.3
+		Write a program that will compute the total sales tax on a $95 purchase. Assume the
+		state sales tax is 4 percent and the county sales tax is 2 percent.
+*/
+#include <iostream>
+using namespace std;
+
+int main() {
+	int purchase_total;
+	float tax;
+	char h;
+	purchase_total = 0;
+	tax = 0.0;
+	cout << "Enter the total purchase amount: ";
+	cin >> purchase_total;
+	cout << "\nEnter sales tax as a percent: ";
+	cin >> tax;
+	cout << "The sales tax on the purchase is $" << purchase_total * tax << endl;
+	cin >> h;
+	return 0;
+}
