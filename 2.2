@@ -1,0 +1,28 @@
+/*
+Author: Israel Garibay
+Date:	January 1st, 2018
+Book:	Starting out with c++, 8th edition
+Problem 2.2
+		The East Coast sales division of a company generates 58 percent of total sales. Based
+		on that percentage, write a program that will predict how much the East Coast division
+		will generate if the company has $8.6 million in sales this year.
+*/
+#include <iostream>
+using namespace std;
+
+int main() {
+	double total;
+	double ECD, ECD_revenue;
+	char h;						//hold program to debug
+	//initialize variables to zero
+	total = 0;
+	ECD = 0.0;
+	//set variables to their respective values
+	total = 8600000;
+	ECD = 0.58;
+	//calculate ECD_revenue
+	ECD_revenue = total * ECD;
+	cout << "ECD produced a total revenue of $" << ECD_revenue << ".";
+	cin >> h;
+	return 0;
+}
