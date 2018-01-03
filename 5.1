@@ -1,0 +1,38 @@
+/*
+Author: Israel Garibay
+Date:	January 3st, 2018
+Book:	Starting out with c++, 8th edition
+Problem 5.1
+		Sum of Numbers
+		Write a program that asks the user for a positive integer value. The program should use
+		a loop to get the sum of all the integers from 1 up to the number entered. For example,
+		if the user enters 50, the loop will find the sum of 1, 2, 3, 4, … 50.
+		Input Validation: Do not accept a negative starting number.
+*/
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main() {
+	char h;							//variable to hold program
+	int number = 0, total = 0;			//variable to hold number user has input
+	ofstream outFile;				//creat a file where all input numbers are stored
+	outFile.open("sumNumbers.txt");	//create a file called sumNumber.txt where number will be stored
+
+	cout << "Input any whole number. This program will take the sum of all numbers that are input.\n";
+	cout << "Enter -1 when done.\n";
+	while (number != -1) {
+		cin >> number;
+		cout << "Number entered is " << number << endl;
+		total += number;
+		cout << "Sum total is " << total << "\nEnter another number, or enter -1 to quit gracefully.\n";
+		outFile << number << endl;
+	}
+	cout << "Thank you for playing. Look for the file sumNumbers.txt to view the numbers you intered!" << endl;
+	cout << "Have a good weekend!";
+	outFile << "The total of the above numbers is\n" << total;
+	outFile.close();
+	cin >> h;
+	return 0;
+}
