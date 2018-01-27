@@ -1,0 +1,65 @@
+#include "stdafx.h"
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+void getTestScores(double[], int);
+double getTotal(const double[], int);
+double getLowest(const double[], int);
+
+int main() {
+	ifstream testData;
+	const int SIZE = 4;								//const integer representing the permanent size of the array
+	double	testScores[SIZE],						//array that stores the value of the four test scores
+			total,									//sum of all the test scores
+			lowestScore,							//lowest of all the test scores in the array						
+			average;								//stores the average of the test scores
+
+	testData.open("testScores.txt");
+
+	cout << fixed << showpoint << setprecision(1);	//make everything look pretty
+	getTestScores(testScores, SIZE);				//this function get's all the test scores from the user
+	total = getTotal(testScores, SIZE);				//this function now adds the elements in an array to calculate the sum of the grades
+	lowestScore = getLowest(testScores, SIZE);		//this function looks through the array and gets the smallest value
+	total -= lowestScore;							//subtract the lowest score from the total amount
+	average = total / (SIZE - 1);					//now calculate the students average test score without the exam that was dropped 
+
+	cout << "The Average with the lowest score dropped it " << average << endl;
+	testData.close();
+	char h;
+	cin >> h;
+	return 0;
+}
+
+//This function asks the user to input all the test scores manually. 
+//Next version of this program will pull this information from a file
+
+void getTestScores(double scores[], int size) {
+	for (int i = 0; i <	size; i++) {
+		cout << "Enter " << i + 1 << " test score: ";
+		cin >> scores[i];
+	}
+}
+
+//This function itterates through the array to calculate the total sum of the array
+//Returns a double which has the sum of all the test scores
+double getTotal(const double scores[], int size) {
+	double total = 0;
+	for (int i = 0; i < size; i++) {
+		total += scores[i];
+	}
+	cout << "The total of the test scores is :" << total << endl;
+	return total;
+}
+
+double getLowest(const double scores[], int size) {
+	double lowest = 0;
+	for (int i = 0; i < size; i++) {
+		if (lowest < scores[i]) {
+			lowest = scores[i];
+		}
+	}
+	cout << "The lowest test score found was " << lowest << endl;
+	return lowest;
+}
