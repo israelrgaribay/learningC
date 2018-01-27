@@ -1,0 +1,55 @@
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+//This program takes test scores from a file and searches the data into an array
+
+bool findScores(int[], int, int);
+
+int main() {
+	int scores[20],
+		num = 0;
+	bool found = false;
+	ifstream testScores;
+	testScores.open("testScores.txt");
+
+	for (int index = 0; testScores >> scores[index]; index++) {//pull data from file and store in 'scores[]' array
+		cout << scores[index] << " ";
+	}
+	cout << "\nEnter the number you wish to find: ";
+	cin >> num;
+	found = findScores(scores, num, sizeof(scores));
+	if (found == true) {
+		cout << "That number is in the system!\n";
+	}
+	else {
+		cout << "That number is not in the system :(\n";
+	}
+	testScores.close();
+	char h;
+	cin >> h;
+	return 0;
+}
+//The following function uses a binary search to sort the test data
+bool findScores(int scores[], int num, int size) {
+	int first = 0,						//beginning of array search
+		middle,							//middle of array search
+		last = size/4;					//last element of array search (that is why we subtact one since we're looking at array index values)
+	bool found = false;
+	cout << last << endl;
+	//let's initialize int middle to the middle index of the array
+	while (!found && first <= last) {
+		middle = (first + last) / 2;	//calculate the middle for the binary search
+		if (scores[middle] == num) {	//compare the middle element to the number
+			found = true;				//once we find what we're looking for the, the while loop ends
+		}
+		else if (scores[middle] > num) {//if the array element is larger than the number, then the number is in the lower half
+			last = middle - 1;
+		}
+		else {							//if the array element is less than number, then the number is in the greater half	
+			first = middle + 1;
+		}
+	}
+	return found;
+}
