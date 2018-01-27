@@ -1,0 +1,32 @@
+#include "stdafx.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+/*The purpose of this program is to learn how to use arrays properly!!!
+	Israel knows arrays. But he does not know them as well as he should haha
+	okay now take this opportunity to really learn it
+*/
+int main() {
+	const int NUM_EMPLOYEES = 6;										//create a constant integer that holds the size of the array	
+	int hours[NUM_EMPLOYEES];											//create an array the size of how many employees there are
+
+	ifstream employeeDataFile;
+	employeeDataFile.open("EmployeeData.txt");
+
+	cout << "Enter the hours worked by each employee : ";
+	for (int i = 0; i < NUM_EMPLOYEES; i++) {
+		employeeDataFile >> hours[i];
+	}
+	cout << "The values that were entered were : ";
+	for (int i = 0; i < NUM_EMPLOYEES; i++) {
+		cout << hours[i] << "\t";
+	}
+	employeeDataFile.close();
+	cout << "Now closing the file ....\t Complete!";
+
+	char h;
+	cin >> h;
+	return 0;
+}
