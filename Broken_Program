@@ -1,0 +1,47 @@
+#include "stdafx.h"
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+//Insert function prototypes here!
+bool testNum(char[], const int);
+
+int main() {
+	const int SIZE = 7;				//represents the size of the array that will be created later
+	char customer[SIZE];			//hold customer ID number
+
+									/*Let's get the customer's information. Store that information in 'customer[]' array and verify what the user entered follows the required guidelines*/
+	cout << "Enter your ID as [First Initial][Second Initial][Holme's Student ID] - LLNNNNN: ";
+	//cin.getline(customer, SIZE);
+	cin.get();
+
+	/*Now determaning if what the user input was valid*/
+	/*if (testNum(customer, SIZE)) {
+	cout << "Okay, good job Israel!\n";
+	}
+	else {
+	"That is not in it's proper form.\n";
+	}*/
+	char h;
+	cin >> h;
+	return 0;
+}
+
+bool testNum(char custNum[], const int size) {
+	/*First we must test that the first two entries are capital letters*/
+	for (int index = 0; index < 2; index++) {
+		if (!isalpha(custNum[index])) {
+			return false;
+		}
+
+	}
+	for (int index = 2; index < 7; index++) {
+		if (!isdigit(custNum[index])) {
+			return false;
+		}
+	}
+	return true;
+}
+/*This program does not work and need to be fixed*
+  Israel will fix it later when he has time.
+/
