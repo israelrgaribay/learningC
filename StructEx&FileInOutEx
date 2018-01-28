@@ -1,0 +1,41 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+/*Define structured memory here and function prototypes*/
+struct PayRoll {
+	int empNumber;											//employee number
+	string name;											//name of employee
+	double hours;											//hours worked by employee
+	double payRate;											//hourly payrate of employee
+	double grossPay;										//gross pay of employee
+};
+
+int main() {
+	PayRoll employee;										//here we define the 'employee' name for the PayRoll structure we created above
+	ifstream employeeDataInFile;							//define input file stream for employee data
+	ofstream employeeDataOuFile;							//after gross pay is calculated, store this information out to another file
+	employeeDataInFile.open("Employee_Data.txt");			//opening file which contains employee dat
+	employeeDataOuFile.open("Employee_Pay_Data.txt");		//creating a new file which stores the gross pay of the employee
+
+	//Enter code to capture the employee's ID (integer's only please)
+	employeeDataInFile >> employee.empNumber;				//pull employee ID number
+	//Enter code to capture the employee's name (string type)
+	employeeDataInFile >> employee.name;					//pull employee name
+	//Enter code to capture the employee's logged worked hours (double type)
+	employeeDataInFile >> employee.hours;
+	//Enter code to capture the employee's payRate (double type)
+	employeeDataInFile >> employee.payRate;					//pull employee payrate from input file
+	//Enter code to write the employee's grossPay (double) and store this information in another file
+	employee.grossPay = employee.hours * employee.payRate;
+	employeeDataOuFile << employee.grossPay;
+
+	employeeDataInFile.close();
+	employeeDataOuFile.close();
+	char h;
+	cin >> h;
+	return 0;
+}
