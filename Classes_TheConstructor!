@@ -1,0 +1,18 @@
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+class Demo {
+public:
+	Demo();
+};
+Demo::Demo() {
+	cout << "Welcome to the constructor!\n";
+}
+
+int main() {
+	Demo demonstraction;
+	char h;
+	cin >> h;
+	return 0;
+}
