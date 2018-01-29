@@ -1,0 +1,77 @@
+#include "stdafx.h"
+#include <iostream>
+#include <memory>
+using namespace std;
+
+class Rectangle {
+private:
+	double width;
+	double length;
+public:
+	void setWidth(double);
+	void setLength(double);
+	double getWidth() const;		//this is an accessor function, it is therfore good practice to make this a const
+	double getLength() const;		//this is an accessor function, it is therefore good practice to make this a const
+	double getArea() const;			//this is an accessor function, it is therefore good practice to make this a const
+};
+void Rectangle::setWidth(double w) {//this a mutator because it changes the attribute 'width' of the object
+	width = w;
+}
+void Rectangle::setLength(double len) {//THIS A MUTATOR because it changes the attribute 'length' of the object
+	length = len;
+}
+double Rectangle::getWidth() const {//THIS IS AN ACCESSOR FUNCTION
+	return width;
+}
+double Rectangle::getLength() const {//this ia acessor function because it accesses an attribute of the object
+	return length;
+
+}
+double Rectangle::getArea() const {//this is also an accessor since it only access but it does not mutate the attributes
+	return width * length;
+}
+
+int main() {
+	unique_ptr<Rectangle> bathroom(new Rectangle);
+	unique_ptr<Rectangle> kitchen(new Rectangle);
+	unique_ptr<Rectangle> Israel(new Rectangle);//create an instance of the Rectangle class to create the 'box' object
+	/*Now that we have our pointers, let's allocate memory for them so they do not overwrite anything that might be important in the program*/
+	double scratch;			//local variable for the width of the box object
+
+	cout << "Enter Width for the bathroom: ";
+	cin >> scratch;
+	bathroom->setWidth(scratch);
+	cout << "Enter Lenght for the bathroom: ";
+	cin >> scratch;
+	bathroom->setLength(scratch);
+	/*---------------------------------------------------------------------------------------------------------------*/
+	cout << "Ether width for kitchen: ";
+	cin >> scratch;
+	kitchen->setWidth(scratch);
+	cout << "Enter the length of the kitchen: ";
+	cin >> scratch;
+	kitchen->setLength(scratch);
+	/*----------------------------------------------------------------------------------------------------------------*/
+	cout << "Enter the width of Israel: ";
+	cin >> scratch;
+	Israel->setWidth(scratch);
+	cout << "Enter the length of Israel: ";
+	cin >> scratch;
+	Israel->setLength(scratch);
+	/*-----------------------------------------------------------------------------------------------------------------*/
+	/*Okay now let's use what we know about accessing objects to store these values into the object*/
+	cout << "\nHere is the bathroom data: \n";
+	cout << "Surface Areea is: " << bathroom->getArea() << endl;
+	cout << "\nHere is the kitchen data: \n";
+	cout << "Surface Area of the kitchen is: " << kitchen->getArea() << endl;
+	cout << "\nHere is the Israel data: \n";
+	cout << "Surface are of Israel... LMAO: " << Israel->getArea() << endl;
+
+/*	Points are  really good if you want to be carefull with your memory usage@
+	Now we must free up the memory we allocated for the pointer to use! */
+	//delete bathroom, kitchen, Israel;
+	//bathroom = kitchen = Israel = nullptr;
+	char h;
+	cin >> h;
+	return 0;
+}
